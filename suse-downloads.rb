@@ -19,25 +19,32 @@ def login_novell(user,pass)
     puts "Login to Novell website failed for user #{user}".red
     exit
   end
-  puts "Logged into Novell website as user #{user}".green if $options[:debug]
+  puts "Logged into Novell website as user #{user}".blue if $options[:debug]
 end
 
 def get_novell_downloads(param = {})
   @agent = Mechanize.new
   
-  # Use below for testing
-  page = @agent.get 'file:///data/download-test/example.html'
-
-  #login_novell param[:user], param[:pass]
-  #page = @agent.get param[:url]
+  page = ""
+  if !$options[:testmode].empty?
+    # Use below for testing
+    path = File.realpath $options[:testmode]
+    puts "Testmode: Getting file:#{path}".blue
+    page = @agent.get "file:///data/download-test/#{$options[:testmode]}"
+  else
+    login_novell param[:user], param[:pass]
+    page = @agent.get param[:url]
+  end
 
   urls = []
-  rows = page.parser.xpath "//*[@id='dl_filelist']/table/tbody/tr"
+  rows = page.parser.xpath "//*[@id='dl_filelist']/table/tr"
+
   rows.each do |row|
     url = {}
     if row.at("td[3]")
       url[:name] = row.at("td[1]").text.strip
-      url[:url]  = row.at("td[3]/a/@href").text
+      url[:url] = row.at("td[3]/a/@href").text
+      url[:url] = 'http://download.novell.com' + url[:url] if $options[:testmode]
       urls << url
     end
   end
@@ -92,7 +99,7 @@ end
 begin
   $options = {}
 
-  $configfile  = 'download.yaml'
+  $configfile  = 'suse-betas.yaml'
 
   optparse = OptionParser.new do |opts|
     opts.banner = "Usage: download-test.rb [options]"
