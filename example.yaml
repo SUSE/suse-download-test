@@ -1,0 +1,13 @@
+sites:
+  - name: Betatest SLES 12
+    user: USERNAME
+    pass: PASSWORD
+    novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=Uhn2fg6VMyk~"
+    available-downloads:
+      - name: PowerLE-FAQ.pdf 
+      - name: MD5SUMS
+      - name: SHA1SUMS
+    unavailable-downloads:
+      - name: xindex.html
+        url: localhost/index.html
+      - regex: Beta4
