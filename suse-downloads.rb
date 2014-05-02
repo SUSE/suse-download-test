@@ -280,4 +280,6 @@ begin
   puts
   puts "Test passed: #{stats.tests_passed_count}"
   puts "Test failed: #{stats.tests_failed_count}"
+
+  exit 1 if stats.tests_failed_count > 0 
 end
