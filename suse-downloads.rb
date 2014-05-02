@@ -30,7 +30,7 @@ def get_novell_downloads(param = {})
     # Use below for testing
     path = File.realpath $options[:testmode]
     puts "Testmode: Getting file:#{path}".blue
-    page = @agent.get "file:///data/download-test/#{$options[:testmode]}"
+    page = @agent.get "file://#{$options[:testmode]}"
   else
     login_novell param[:user], param[:pass]
     page = @agent.get param[:url]
@@ -53,6 +53,12 @@ def get_novell_downloads(param = {})
   return urls.sort{ |a,b| a[:text] <=> b[:text] }
 end
 
+def log_result( success, testname )
+  result = success ? '[Passed]' : '[Failed]'
+  color  = success ? :green : :red
+  puts "   - #{result} #{testname}".colorize(color)
+end
+
 def test_download(param = {})
   if param[:name].nil?
     puts "   - Error: No name defined".red
@@ -72,21 +78,21 @@ def test_download(param = {})
       param[:url], 
       "-f", 
       "-L", 
-      "--max-filesize", 
-      "1024" )
-    if type != 'unavailable'
-      puts "   - [Success] Download finished: #{param[:name]}".green
-    else 
-      puts "   -  [Failed] Download finished of unavailable file: #{param[:name]}".red
+      "--max-filesize", "1024" )
+
+    if type == 'unavailable'
+      log_result false, "File is not available: '#{param[:name]}' (download completed)"
+    else
+      log_result true, "File is available: '#{param[:name]}' (download completed)"
     end
 
   rescue Cheetah::ExecutionFailed => e
     if type == 'available' && e.status.exitstatus == 63 
-      puts "   - [Success] Download started: #{param[:name]}".green
+      log_result true, "File is available: '#{param[:name]}' (download started)"
     elsif type == 'unavailable' && e.status.exitstatus == 22
-      puts "   - [Success] File is not available: #{param[:name]}".green
+      log_result true, "File is not available: '#{param[:name]}'"
     elsif type == 'unavailable' && e.status.exitstatus == 63
-      puts "   -  [Failed] File should not be available: #{param[:name]}".red
+      log_result false, "File is not available: '#{param[:name]}'"
     else
       puts "   - Status: #{e.status.exitstatus}".red
       puts "     Error: #{e.message}".red
@@ -115,6 +121,11 @@ begin
       $options[:debug] = true
     end
 
+    $options[:list] = false
+    opts.on( '-l', '--list', "Show list of files" ) do
+      $options[:list] = true
+    end
+
     $options[:nolist] = false
     opts.on( '-L', '--no-list', "Don't get list of files" ) do
       $options[:nolist] = true
@@ -126,7 +137,7 @@ begin
     end
 
     $options[:testmode] = ""
-    opts.on( '-T', '--testmode STRING', "Don't login, but file instead of download page" ) do |c|
+    opts.on( '-T', '--testmode STRING', "Parse file instead of online page to find downloads" ) do |c|
       $options[:testmode] = c
     end
 
@@ -148,10 +159,10 @@ begin
     puts "Checking site: #{site['name']}"
     
     urls = []
-    if !$options[:nolist]
-      # Check what's available
-      if !site['novell-url'].nil?
-        urls = get_novell_downloads url: site['novell-url'], user: site['user'], pass: site['pass']
+    # Check what's available
+    if !site['novell-url'].nil?
+      urls = get_novell_downloads url: site['novell-url'], user: site['user'], pass: site['pass']
+      if $options[:list]
         puts "  * Available Novell downloads:"
         urls.each do |url|
           puts "   - #{url[:name]}"
@@ -172,9 +183,13 @@ begin
 
       # Check if what should be there is available
       puts "  * Testing if specific files are available:"
-      downloads = site['available-downloads'] 
+      downloads = site['available-downloads'] ||= []
       downloads.each do |d|
-        if d['name'] && d['url']
+        if d['regex']
+          log_result( 
+           urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?, 
+           "One or more files match '#{d['regex']}'" )
+        elsif d['name'] && d['url']
           test_download url: d['url'], name: d['name'], type: 'available'
         elsif d['name']
           found = false
@@ -186,7 +201,7 @@ begin
             end
           end
           if !found
-            puts "   -  [Failed] Could not find file': #{d['name']}".red
+            puts "   -  [Failed] Could not find file': '#{d['name']}'".red
           end
         end
       end
@@ -196,17 +211,17 @@ begin
       downloads = site['unavailable-downloads'] ||= []
       downloads.each do |d|
         if d['regex']
-          urls.each do |u|
-            if u[:name].match d['regex']
-              puts "   -  [Failed] Found file matching '#{d['regex']}': #{u[:name]}".red
-            end
-          end
+          log_result(
+            !urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?,
+            "File matching '#{d['regex']}' should not be available"
+          )
         elsif d['name'] && d['url']
+          puts "Found name and url".blue
           test_download url: d['url'], name: d['name'], type: 'unavailable'
-        elsif d[:name]
+        elsif d['name']
           urls.each do |u|
-            if u[:name] == d[:name]
-              test_download url: d['url'], name: d['name'], type: 'unavailable'
+            if u[:name] == d['name']
+              test_download url: u[:url], name: d['name'], type: 'unavailable'
             end
           end
         else
