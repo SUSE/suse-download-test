@@ -1,13 +1,48 @@
 sites:
   - name: Betatest SLES 12
-    user: USERNAME
-    pass: PASSWORD
+    user: YOUR_USERNAME
+    pass: YOUR_PASSWORD
     novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=Uhn2fg6VMyk~"
     available-downloads:
+      - autocheck: true
       - name: PowerLE-FAQ.pdf 
       - name: MD5SUMS
       - name: SHA1SUMS
+      - regex: .*Beta5.*iso
+      - regex: SLE-12-SDK-DVD.*iso  
     unavailable-downloads:
-      - name: xindex.html
-        url: localhost/index.html
-      - regex: Beta4
+      - regex: Beta1.*iso
+      - regex: Beta2.*iso
+      - regex: Beta3.*iso
+      - regex: Beta4.*iso
+
+  - name: Betatest SLED 12
+    user: YOUR_USERNAME
+    pass: YOUR_PASSWORD
+    novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=OkICkpcQeIg~"
+    available-downloads:
+      - autocheck: true
+      - name: MD5SUMS
+      - name: SHA1SUMS
+      - regex: Beta5.*iso
+      - regex: SLE-12-SDK-DVD.*iso  
+    unavailable-downloads:
+      - regex: Beta1.*iso
+      - regex: Beta2.*iso
+      - regex: Beta3.*iso
+      - regex: Beta4.*iso
+
+  - name: Betatest SLE 12 HA & Geo
+    user: YOUR_USERNAME
+    pass: YOUR_PASSWORD
+    novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=HAPbW6wVFPQ~"
+    available-downloads:
+      - autocheck: true
+      - name: MD5SUMS
+      - name: SHA1SUMS
+    unavailable-downloads:
+      - regex: Beta1.*iso
+      - regex: Beta2.*iso
+      - regex: Beta3.*iso
+      - regex: Beta4.*iso
+      - regex: Beta6.*iso
