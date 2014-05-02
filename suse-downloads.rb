@@ -6,6 +6,28 @@ require 'optparse'
 require 'mechanize'
 require 'yaml'
 
+class Stats
+  def initialize
+    @@tests_passed_count = 0
+    @@tests_failed_count = 0
+  end
+
+  def self.test_passed
+    @@tests_passed_count += 1
+  end
+
+  def self.test_failed
+    @@tests_failed_count += 1
+  end
+  
+  def tests_passed_count
+    @@tests_passed_count
+  end
+  def tests_failed_count
+    @@tests_failed_count
+  end
+end
+
 def login_novell(user,pass)
   @agent = Mechanize.new
   page = @agent.get 'https://login.attachmategroup.com/nidp/app/login?id=17&sid=2&option=credential&sid=2'
@@ -53,10 +75,15 @@ def get_novell_downloads(param = {})
   return urls.sort{ |a,b| a[:text] <=> b[:text] }
 end
 
-def log_result( success, testname )
+def log_result( success, testname, sitename )
   result = success ? '[Passed]' : '[Failed]'
   color  = success ? :green : :red
-  puts "   - #{result} #{testname}".colorize(color)
+  puts "   - #{result} #{testname} for '#{sitename}'".colorize(color)
+  if success
+    Stats::test_passed
+  else
+    Stats::test_failed
+  end
 end
 
 def test_download(param = {})
@@ -66,7 +93,12 @@ def test_download(param = {})
   end
 
   if param[:url].nil?
-    puts "   - Error: No URL defined"
+    puts "   - Error: No URL defined".red
+    return
+  end
+
+  if param[:sitename].nil?
+    puts "   - Error: No testsite defined".red
     return
   end
 
@@ -81,18 +113,24 @@ def test_download(param = {})
       "--max-filesize", "1024" )
 
     if type == 'unavailable'
-      log_result false, "File is not available: '#{param[:name]}' (download completed)"
+      log_result(
+        false, 
+        "File is not available: '#{param[:name]}' (download completed)",
+        param[:sitename] )
     else
-      log_result true, "File is available: '#{param[:name]}' (download completed)"
+      log_result(
+        true, 
+        "File is available: '#{param[:name]}' (download completed)",
+        param[:sitename] )
     end
 
   rescue Cheetah::ExecutionFailed => e
     if type == 'available' && e.status.exitstatus == 63 
-      log_result true, "File is available: '#{param[:name]}' (download started)"
+      log_result true, "File is available: '#{param[:name]}' (download started)", param[:sitename]
     elsif type == 'unavailable' && e.status.exitstatus == 22
-      log_result true, "File is not available: '#{param[:name]}'"
+      log_result true, "File is not available: '#{param[:name]}'", param[:sitename]
     elsif type == 'unavailable' && e.status.exitstatus == 63
-      log_result false, "File is not available: '#{param[:name]}'"
+      log_result false, "File is not available: '#{param[:name]}'", param[:sitename]
     else
       puts "   - Status: #{e.status.exitstatus}".red
       puts "     Error: #{e.message}".red
@@ -103,6 +141,8 @@ def test_download(param = {})
 end
 
 begin
+  stats = Stats.new
+
   $options = {}
 
   $configfile  = 'suse-betas.yaml'
@@ -126,9 +166,9 @@ begin
       $options[:list] = true
     end
 
-    $options[:nolist] = false
-    opts.on( '-L', '--no-list', "Don't get list of files" ) do
-      $options[:nolist] = true
+    $options[:nolisttest] = false
+    opts.on( '-L', '--no-list-test', "Don't test list of available files" ) do
+      $options[:nolisttest] = true
     end
 
     $options[:test] = false
@@ -173,10 +213,10 @@ begin
     
     if $options[:test]
       # Check if available downloads can be downloaded
-      if !$options[:nolist]
-        puts "  * Testing available downloads:"
+      if !$options[:nolisttest] && site['available-downloads'].include?({'autocheck' => true})
+        puts "  * Testing available downloads:" 
         urls.each do |u|
-          test_download url: u[:url], name: u[:name], type: 'available'
+          test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
         end
       end
 
@@ -188,20 +228,24 @@ begin
         if d['regex']
           log_result( 
            urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?, 
-           "One or more files match '#{d['regex']}'" )
+           "One or more files match '#{d['regex']}'",
+           site['name'])
         elsif d['name'] && d['url']
-          test_download url: d['url'], name: d['name'], type: 'available'
+          test_download url: d['url'], name: d['name'], type: 'available', sitename: site['name']
         elsif d['name']
           found = false
           urls.each do |u|
             if u[:name] == d['name']
-              test_download url: u[:url], name: u[:name], type: 'available'
+              test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
               found = true
               break
             end
           end
           if !found
-            puts "   -  [Failed] Could not find file': '#{d['name']}'".red
+            log_result(
+              false,
+              "File is not available: '#{d['name']}' (No URL found in downloads)",
+              site['name'])
           end
         end
       end
@@ -213,15 +257,16 @@ begin
         if d['regex']
           log_result(
             !urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?,
-            "File matching '#{d['regex']}' should not be available"
+            "File matching '#{d['regex']}' should not be available",
+            site['name']
           )
         elsif d['name'] && d['url']
           puts "Found name and url".blue
-          test_download url: d['url'], name: d['name'], type: 'unavailable'
+          test_download url: d['url'], name: d['name'], type: 'unavailable', sitename: site['name']
         elsif d['name']
           urls.each do |u|
             if u[:name] == d['name']
-              test_download url: u[:url], name: d['name'], type: 'unavailable'
+              test_download url: u[:url], name: d['name'], type: 'unavailable', sitename: site['name']
             end
           end
         else
@@ -231,4 +276,8 @@ begin
       end # Check if what should not be there is available
     end # Do tests
   end # Loop sites
+
+  puts
+  puts "Test passed: #{stats.tests_passed_count}"
+  puts "Test failed: #{stats.tests_failed_count}"
 end
