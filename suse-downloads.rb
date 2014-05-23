@@ -78,7 +78,13 @@ end
 def log_result( success, testname, sitename )
   result = success ? '[Passed]' : '[Failed]'
   color  = success ? :green : :red
-  puts "   - #{result} #{testname} for '#{sitename}'".colorize(color)
+  s = "   - #{result} #{testname} for '#{sitename}'"
+  if $options[:nocolor]
+    puts s
+  else
+    puts s.colorize(color)
+  end
+
   if success
     Stats::test_passed
   else
@@ -154,6 +160,11 @@ begin
     opts.on( '-f', '--configuration STRING', 'Configuration file' ) do |c|
       $options[:configuration] = c
       $configfile = c
+    end
+
+    $options[:nocolor] = false
+    opts.on( '-C', '--no-color', "Don't color the output (useful for mails)" ) do
+      $options[:nocolor] = true
     end
 
     $options[:debug] = false
