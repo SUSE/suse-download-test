@@ -1,5 +1,6 @@
 sites:
   - name: Betatest SLES 12
+    alias: sles
     user: YOUR_USERNAME
     pass: YOUR_PASSWORD
     novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=Uhn2fg6VMyk~"
@@ -8,15 +9,76 @@ sites:
       - name: PowerLE-FAQ.pdf 
       - name: MD5SUMS
       - name: SHA1SUMS
-      - regex: .*Beta5.*iso
-      - regex: SLE-12-SDK-DVD.*iso  
+      - name: SHA256SUMS
+
+    # Modules / AddOns
+      - name: SLE-12-module-legacy-DVD-ppc64le-Build0033-Media1.iso
+      - name: SLE-12-module-legacy-DVD-ppc64le-Build0033-Media2.iso
+      - name: SLE-12-module-legacy-DVD-s390x-Build0033-Media1.iso
+      - name: SLE-12-module-legacy-DVD-s390x-Build0033-Media2.iso
+      - name: SLE-12-module-legacy-DVD-x86_64-Build0033-Media1.iso
+      - name: SLE-12-module-legacy-DVD-x86_64-Build0033-Media2.iso
+      - name: SLE-12-module-web-scripting-DVD-ppc64le-Build0049-Media1.iso
+      - name: SLE-12-module-web-scripting-DVD-ppc64le-Build0049-Media2.iso
+      - name: SLE-12-module-web-scripting-DVD-s390x-Build0049-Media1.iso
+      - name: SLE-12-module-web-scripting-DVD-s390x-Build0049-Media2.iso
+      - name: SLE-12-module-web-scripting-DVD-x86_64-Build0049-Media1.iso
+      - name: SLE-12-module-web-scripting-DVD-x86_64-Build0049-Media2.iso
+      - name: SLE-12-Desktop-ADDON-DVD-x86_64-Beta7-DVD1.iso
+      - name: SLE-12-Desktop-ADDON-DVD-x86_64-Beta7-DVD2.iso
+
+    # SDK
+      - name: SLE-12-SDK-DVD-ppc64le-Beta7-DVD1.iso
+      - name: SLE-12-SDK-DVD-ppc64le-Beta7-DVD2.iso
+      - name: SLE-12-SDK-DVD-ppc64le-Beta7-DVD3.iso
+      - name: SLE-12-SDK-DVD-s390x-Beta7-DVD1.iso
+      - name: SLE-12-SDK-DVD-s390x-Beta7-DVD2.iso
+      - name: SLE-12-SDK-DVD-s390x-Beta7-DVD3.iso
+      - name: SLE-12-SDK-DVD-x86_64-Beta7-DVD1.iso
+      - name: SLE-12-SDK-DVD-x86_64-Beta7-DVD2.iso
+      - name: SLE-12-SDK-DVD-x86_64-Beta7-DVD3.iso
+      - regex: SLE-12-SDK-DVD.*Beta7.*DVD1.*iso  
+      - regex: SLE-12-SDK-DVD.*Beta7.*DVD2.*iso  
+      - regex: SLE-12-SDK-DVD.*Beta7.*DVD3.*iso  
+
+    # SLES
+      - name: SLE-12-Server-DVD-ppc64le-Beta7-DVD1.iso
+      - name: SLE-12-Server-DVD-ppc64le-Beta7-DVD2.iso
+      - name: SLE-12-Server-DVD-ppc64le-Beta7-DVD3.iso
+      - name: SLE-12-Server-DVD-s390x-Beta7-DVD1.iso
+      - name: SLE-12-Server-DVD-s390x-Beta7-DVD2.iso
+      - name: SLE-12-Server-DVD-s390x-Beta7-DVD3.iso
+      - name: SLE-12-Server-DVD-x86_64-Beta7-DVD1.iso
+      - name: SLE-12-Server-DVD-x86_64-Beta7-DVD2.iso
+      - name: SLE-12-Server-DVD-x86_64-Beta7-DVD3.iso
+      - name: SLE-12-Server-MINI-ISO-ppc64le-Beta7-DVD.iso
+      - name: SLE-12-Server-MINI-ISO-s390x-Beta7-DVD.iso
+      - name: SLE-12-Server-MINI-ISO-x86_64-Beta7-DVD.iso
+
+    # VMDP
+      - regex: vmdp.*2\.1-9\.1
+      - regex: vmdp-140509
+
+    # Presentations
+      - name: SUSE-Linux-Enterprise_12_Advanced-Systems-Management.pdf
+      - name: SUSE-Linux-Enterprise_12_Filesystems_for_Beta2.pdf
+      - name: SUSE-Linux-Enterprise_12_High_Availability.pdf
+      - name: SUSE-Linux-Enterprise_12_Highlights_for_Beta1.pdf
+      - name: SUSE-Linux-Enterprise_12_Maintenance_SCC.pdf
+      - name: SUSE-Linux-Enterprise_12_systemd-network.pdf
+
     unavailable-downloads:
       - regex: Beta1.*iso
       - regex: Beta2.*iso
       - regex: Beta3.*iso
       - regex: Beta4.*iso
+      - regex: Beta5.*iso
+      - regex: Beta6.*iso
+      - regex: vmdp.*2\.1-7\.1
+      - regex: vmdp-140227
 
   - name: Betatest SLED 12
+    alias: sled
     user: YOUR_USERNAME
     pass: YOUR_PASSWORD
     novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=OkICkpcQeIg~"
@@ -24,15 +86,40 @@ sites:
       - autocheck: true
       - name: MD5SUMS
       - name: SHA1SUMS
-      - regex: Beta5.*iso
-      - regex: SLE-12-SDK-DVD.*iso  
+      - name: SHA256SUMS
+      - regex: Beta7.*iso
+        
+    # SDK
+      - name: SLE-12-SDK-DVD-x86_64-Beta7-DVD1.iso
+      - name: SLE-12-SDK-DVD-x86_64-Beta7-DVD2.iso
+      - name: SLE-12-SDK-DVD-x86_64-Beta7-DVD3.iso
+
+
+      - name: SLE-12-Desktop-DVD-x86_64-Beta7-DVD1.iso
+      - name: SLE-12-Desktop-DVD-x86_64-Beta7-DVD2.iso
+      - name: SLE-12-Desktop-DVD-x86_64-Beta7-DVD3.iso
+      - name: SLE-12-Desktop-MINI-ISO-x86_64-Beta7-DVD.iso
+
+    # Presentations
+      - name: SUSE-Linux-Enterprise_12_Advanced-Systems-Management.pdf
+      - name: SUSE-Linux-Enterprise_12_Filesystems_for_Beta2.pdf
+      - name: SUSE-Linux-Enterprise_12_High_Availability.pdf
+      - name: SUSE-Linux-Enterprise_12_Highlights_for_Beta1.pdf
+      - name: SUSE-Linux-Enterprise_12_Maintenance_SCC.pdf
+      - name: SUSE-Linux-Enterprise_12_systemd-network.pdf
+
     unavailable-downloads:
+      - regex: SDK.*ppc
+      - regex: SDK.*s390
       - regex: Beta1.*iso
       - regex: Beta2.*iso
       - regex: Beta3.*iso
       - regex: Beta4.*iso
+      - regex: Beta5.*iso
+      - regex: Beta6.*iso
 
   - name: Betatest SLE 12 HA & Geo
+    alias: ha
     user: YOUR_USERNAME
     pass: YOUR_PASSWORD
     novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=HAPbW6wVFPQ~"
@@ -40,9 +127,12 @@ sites:
       - autocheck: true
       - name: MD5SUMS
       - name: SHA1SUMS
+      - name: SHA256SUMS
+      - regex: Beta7.*iso
     unavailable-downloads:
       - regex: Beta1.*iso
       - regex: Beta2.*iso
       - regex: Beta3.*iso
       - regex: Beta4.*iso
+      - regex: Beta5.*iso
       - regex: Beta6.*iso
