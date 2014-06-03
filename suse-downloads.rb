@@ -154,7 +154,7 @@ begin
   $configfile  = 'suse-betas.yaml'
 
   optparse = OptionParser.new do |opts|
-    opts.banner = "Usage: download-test.rb [options]"
+    opts.banner = "Usage: download-test.rb [options] [ALIAS]"
 
     $options[:configuration] = ""
     opts.on( '-f', '--configuration STRING', 'Configuration file' ) do |c|
@@ -205,87 +205,90 @@ begin
              puts "Could not parse #{$configfile}: #{e.message}"
              exit
            end
+  
 
   config["sites"].each do |site|
-    puts "Checking site: #{site['name']}"
-    
-    urls = []
-    # Check what's available
-    if !site['novell-url'].nil?
-      urls = get_novell_downloads url: site['novell-url'], user: site['user'], pass: site['pass']
-      if $options[:list]
-        puts "  * Available Novell downloads:"
-        urls.each do |url|
-          puts "   - #{url[:name]}"
-          #puts "     #{url[:url]}"
+    if ARGV.empty? ||  ARGV.include?(site['alias']) 
+      puts "Checking site: #{site['name']}"
+
+      urls = []
+      # Check what's available
+      if !site['novell-url'].nil?
+        urls = get_novell_downloads url: site['novell-url'], user: site['user'], pass: site['pass']
+        if $options[:list]
+          puts "  * Available Novell downloads:"
+          urls.each do |url|
+            puts "   - #{url[:name]}"
+            #puts "     #{url[:url]}"
+          end
         end
       end
-    end
-    
-    if $options[:test]
-      # Check if available downloads can be downloaded
-      if !$options[:nolisttest] && site['available-downloads'].include?({'autocheck' => true})
-        puts "  * Testing available downloads:" 
-        urls.each do |u|
-          test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
-        end
-      end
-
-
-      # Check if what should be there is available
-      puts "  * Testing if specific files are available:"
-      downloads = site['available-downloads'] ||= []
-      downloads.each do |d|
-        if d['regex']
-          log_result( 
-           urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?, 
-           "One or more files match '#{d['regex']}'",
-           site['name'])
-        elsif d['name'] && d['url']
-          test_download url: d['url'], name: d['name'], type: 'available', sitename: site['name']
-        elsif d['name']
-          found = false
+      
+      if $options[:test]
+        # Check if available downloads can be downloaded
+        if !$options[:nolisttest] && site['available-downloads'].include?({'autocheck' => true})
+          puts "  * Testing available downloads:" 
           urls.each do |u|
-            if u[:name] == d['name']
-              test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
-              found = true
-              break
+            test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
+          end
+        end
+
+
+        # Check if what should be there is available
+        puts "  * Testing if specific files are available:"
+        downloads = site['available-downloads'] ||= []
+        downloads.each do |d|
+          if d['regex']
+            log_result( 
+             urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?, 
+             "One or more files match '#{d['regex']}'",
+             site['name'])
+          elsif d['name'] && d['url']
+            test_download url: d['url'], name: d['name'], type: 'available', sitename: site['name']
+          elsif d['name']
+            found = false
+            urls.each do |u|
+              if u[:name] == d['name']
+                test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
+                found = true
+                break
+              end
+            end
+            if !found
+              log_result(
+                false,
+                "File is not available: '#{d['name']}' (No URL found in downloads)",
+                site['name'])
             end
           end
-          if !found
+        end
+
+        # Check if what should not be there is available
+        puts "  * Testing if specific files are not available:"
+        downloads = site['unavailable-downloads'] ||= []
+        downloads.each do |d|
+          if d['regex']
             log_result(
-              false,
-              "File is not available: '#{d['name']}' (No URL found in downloads)",
-              site['name'])
-          end
-        end
-      end
-
-      # Check if what should not be there is available
-      puts "  * Testing if specific files are not available:"
-      downloads = site['unavailable-downloads'] ||= []
-      downloads.each do |d|
-        if d['regex']
-          log_result(
-            !urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?,
-            "File matching '#{d['regex']}' should not be available",
-            site['name']
-          )
-        elsif d['name'] && d['url']
-          puts "Found name and url".blue
-          test_download url: d['url'], name: d['name'], type: 'unavailable', sitename: site['name']
-        elsif d['name']
-          urls.each do |u|
-            if u[:name] == d['name']
-              test_download url: u[:url], name: d['name'], type: 'unavailable', sitename: site['name']
+              !urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?,
+              "File matching '#{d['regex']}' should not be available",
+              site['name']
+            )
+          elsif d['name'] && d['url']
+            puts "Found name and url".blue
+            test_download url: d['url'], name: d['name'], type: 'unavailable', sitename: site['name']
+          elsif d['name']
+            urls.each do |u|
+              if u[:name] == d['name']
+                test_download url: u[:url], name: d['name'], type: 'unavailable', sitename: site['name']
+              end
             end
+          else
+            puts "Aborted: Couldn't find data in unavailable-downloads".red
+            exit
           end
-        else
-          puts "Aborted: Couldn't find data in unavailable-downloads".red
-          exit
-        end
-      end # Check if what should not be there is available
-    end # Do tests
+        end # Check if what should not be there is available
+      end # Do tests
+    end # Check specific site
   end # Loop sites
 
   puts
