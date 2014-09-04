@@ -152,6 +152,7 @@ begin
   $options = {}
 
   $configfile  = 'suse-betas.yaml'
+  $credentialfile  = 'credentials.yaml'
 
   optparse = OptionParser.new do |opts|
     opts.banner = "Usage: download-test.rb [options] [ALIAS]"
@@ -214,12 +215,35 @@ begin
       urls = []
       # Check what's available
       if !site['novell-url'].nil?
-        urls = get_novell_downloads url: site['novell-url'], user: site['user'], pass: site['pass']
+
+        # Use credentials from config, or general credential from separate
+        # file, if you don't want to put them into version control
+        user = ''
+        pass = ''
+        if site['user'] == 'EXTERN'
+          credentials = begin
+                          YAML.load( File.open($credentialfile))
+                        rescue ArgumentError => e
+                          puts "Could not parse #{$credentialfile}: #{e.message}"
+                          exit
+                        end
+          credentials["sites"].each do |site2|
+            if site2['name'] == site['name']
+              user = site2['user']
+              pass = site2['pass']
+              break
+            end
+          end
+        else
+          user = site['user']
+          pass = site['pass']
+        end
+          
+        urls = get_novell_downloads url: site['novell-url'], user: user, pass: pass
         if $options[:list]
           puts "  * Available Novell downloads:"
           urls.each do |url|
             puts "   - #{url[:name]}"
-            #puts "     #{url[:url]}"
           end
         end
       end
