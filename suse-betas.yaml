@@ -11,50 +11,50 @@ sites:
       - name: SHA256SUMS
 
     # Modules / AddOns
-      - name: SLE-12-Module-Adv-Systems-Management-DVD-x86_64-RC3-CD1.iso
-      - name: SLE-12-Module-Adv-Systems-Management-DVD-x86_64-RC3-CD2.iso
-      - name: SLE-12-Module-Legacy-DVD-ppc64le-RC3-CD1.iso  
-      - name: SLE-12-Module-Legacy-DVD-ppc64le-RC3-CD2.iso  
-      - name: SLE-12-Module-Legacy-DVD-s390x-RC3-CD1.iso
-      - name: SLE-12-Module-Legacy-DVD-s390x-RC3-CD2.iso
-      - name: SLE-12-Module-Legacy-DVD-x86_64-RC3-CD1.iso
-      - name: SLE-12-Module-Legacy-DVD-x86_64-RC3-CD2.iso
-      - name: SLE-12-Module-Web-Scripting-DVD-ppc64le-RC3-CD1.iso
-      - name: SLE-12-Module-Web-Scripting-DVD-ppc64le-RC3-CD2.iso
-      - name: SLE-12-Module-Web-Scripting-DVD-s390x-RC3-CD1.iso
-      - name: SLE-12-Module-Web-Scripting-DVD-s390x-RC3-CD2.iso
-      - name: SLE-12-Module-Web-Scripting-DVD-x86_64-RC3-CD1.iso
-      - name: SLE-12-Module-Web-Scripting-DVD-x86_64-RC3-CD2.iso
-      - name: SLE-12-WE-DVD-x86_64-RC3-DVD1.iso
-      - name: SLE-12-WE-DVD-x86_64-RC3-DVD2.iso
+      - name: SLE-12-Module-Adv-Systems-Management-DVD-x86_64-GMC-CD1.iso
+      - name: SLE-12-Module-Adv-Systems-Management-DVD-x86_64-GMC-CD2.iso
+      - name: SLE-12-Module-Legacy-DVD-ppc64le-GMC-CD1.iso  
+      - name: SLE-12-Module-Legacy-DVD-ppc64le-GMC-CD2.iso  
+      - name: SLE-12-Module-Legacy-DVD-s390x-GMC-CD1.iso
+      - name: SLE-12-Module-Legacy-DVD-s390x-GMC-CD2.iso
+      - name: SLE-12-Module-Legacy-DVD-x86_64-GMC-CD1.iso
+      - name: SLE-12-Module-Legacy-DVD-x86_64-GMC-CD2.iso
+      - name: SLE-12-Module-Web-Scripting-DVD-ppc64le-GMC-CD1.iso
+      - name: SLE-12-Module-Web-Scripting-DVD-ppc64le-GMC-CD2.iso
+      - name: SLE-12-Module-Web-Scripting-DVD-s390x-GMC-CD1.iso
+      - name: SLE-12-Module-Web-Scripting-DVD-s390x-GMC-CD2.iso
+      - name: SLE-12-Module-Web-Scripting-DVD-x86_64-GMC-CD1.iso
+      - name: SLE-12-Module-Web-Scripting-DVD-x86_64-GMC-CD2.iso
+      - name: SLE-12-WE-DVD-x86_64-GMC-DVD1.iso
+      - name: SLE-12-WE-DVD-x86_64-GMC-DVD2.iso
 
     # SDK
-      - name: SLE-12-SDK-DVD-ppc64le-RC3-DVD1.iso
-      - name: SLE-12-SDK-DVD-ppc64le-RC3-DVD2.iso
-      - name: SLE-12-SDK-DVD-ppc64le-RC3-DVD3.iso
-      - name: SLE-12-SDK-DVD-s390x-RC3-DVD1.iso
-      - name: SLE-12-SDK-DVD-s390x-RC3-DVD2.iso
-      - name: SLE-12-SDK-DVD-s390x-RC3-DVD3.iso
-      - name: SLE-12-SDK-DVD-x86_64-RC3-DVD1.iso
-      - name: SLE-12-SDK-DVD-x86_64-RC3-DVD2.iso
-      - name: SLE-12-SDK-DVD-x86_64-RC3-DVD3.iso
-      - regex: SLE-12-SDK-DVD.*RC3.*DVD1.*iso  
-      - regex: SLE-12-SDK-DVD.*RC3.*DVD2.*iso  
-      - regex: SLE-12-SDK-DVD.*RC3.*DVD3.*iso  
+      - name: SLE-12-SDK-DVD-ppc64le-GMC-DVD1.iso
+      - name: SLE-12-SDK-DVD-ppc64le-GMC-DVD2.iso
+      - name: SLE-12-SDK-DVD-ppc64le-GMC-DVD3.iso
+      - name: SLE-12-SDK-DVD-s390x-GMC-DVD1.iso
+      - name: SLE-12-SDK-DVD-s390x-GMC-DVD2.iso
+      - name: SLE-12-SDK-DVD-s390x-GMC-DVD3.iso
+      - name: SLE-12-SDK-DVD-x86_64-GMC-DVD1.iso
+      - name: SLE-12-SDK-DVD-x86_64-GMC-DVD2.iso
+      - name: SLE-12-SDK-DVD-x86_64-GMC-DVD3.iso
+      - regex: SLE-12-SDK-DVD.*GMC.*DVD1.*iso  
+      - regex: SLE-12-SDK-DVD.*GMC.*DVD2.*iso  
+      - regex: SLE-12-SDK-DVD.*GMC.*DVD3.*iso  
 
     # SLES
-      - name: SLE-12-Server-DVD-ppc64le-RC3-DVD1.iso
-      - name: SLE-12-Server-DVD-ppc64le-RC3-DVD2.iso
-      - name: SLE-12-Server-DVD-ppc64le-RC3-DVD3.iso
-      - name: SLE-12-Server-DVD-s390x-RC3-DVD1.iso
-      - name: SLE-12-Server-DVD-s390x-RC3-DVD2.iso
-      - name: SLE-12-Server-DVD-s390x-RC3-DVD3.iso
-      - name: SLE-12-Server-DVD-x86_64-RC3-DVD1.iso
-      - name: SLE-12-Server-DVD-x86_64-RC3-DVD2.iso
-      - name: SLE-12-Server-DVD-x86_64-RC3-DVD3.iso
-      - name: SLE-12-Server-MINI-ISO-ppc64le-RC3-DVD.iso
-      - name: SLE-12-Server-MINI-ISO-s390x-RC3-DVD.iso
-      - name: SLE-12-Server-MINI-ISO-x86_64-RC3-DVD.iso
+      - name: SLE-12-Server-DVD-ppc64le-GMC-DVD1.iso
+      - name: SLE-12-Server-DVD-ppc64le-GMC-DVD2.iso
+      - name: SLE-12-Server-DVD-ppc64le-GMC-DVD3.iso
+      - name: SLE-12-Server-DVD-s390x-GMC-DVD1.iso
+      - name: SLE-12-Server-DVD-s390x-GMC-DVD2.iso
+      - name: SLE-12-Server-DVD-s390x-GMC-DVD3.iso
+      - name: SLE-12-Server-DVD-x86_64-GMC-DVD1.iso
+      - name: SLE-12-Server-DVD-x86_64-GMC-DVD2.iso
+      - name: SLE-12-Server-DVD-x86_64-GMC-DVD3.iso
+      - name: SLE-12-Server-MINI-ISO-ppc64le-GMC-DVD.iso
+      - name: SLE-12-Server-MINI-ISO-s390x-GMC-DVD.iso
+      - name: SLE-12-Server-MINI-ISO-x86_64-GMC-DVD.iso
 
     # VMDP
       - regex: vmdp.*2\.1-9\.1
@@ -82,6 +82,7 @@ sites:
       - regex: Beta10.*iso
       - regex: RC1.*iso
       - regex: RC2.*iso
+      - regex: RC3.*iso
       - regex: vmdp.*2\.1-7\.1
       - regex: vmdp-140227
 
@@ -94,17 +95,17 @@ sites:
       - name: MD5SUMS
       - name: SHA1SUMS
       - name: SHA256SUMS
-      - regex: RC3.*iso
+      - regex: GMC.*iso
  
-      - name: SLE-12-Desktop-DVD-x86_64-RC3-DVD1.iso
-      - name: SLE-12-Desktop-DVD-x86_64-RC3-DVD2.iso
-      - name: SLE-12-Desktop-DVD-x86_64-RC3-DVD3.iso
-      - name: SLE-12-Desktop-MINI-ISO-x86_64-RC3-DVD.iso
+      - name: SLE-12-Desktop-DVD-x86_64-GMC-DVD1.iso
+      - name: SLE-12-Desktop-DVD-x86_64-GMC-DVD2.iso
+      - name: SLE-12-Desktop-DVD-x86_64-GMC-DVD3.iso
+      - name: SLE-12-Desktop-MINI-ISO-x86_64-GMC-DVD.iso
 
     # SDK
-      - name: SLE-12-SDK-DVD-x86_64-RC3-DVD1.iso
-      - name: SLE-12-SDK-DVD-x86_64-RC3-DVD2.iso
-      - name: SLE-12-SDK-DVD-x86_64-RC3-DVD3.iso
+      - name: SLE-12-SDK-DVD-x86_64-GMC-DVD1.iso
+      - name: SLE-12-SDK-DVD-x86_64-GMC-DVD2.iso
+      - name: SLE-12-SDK-DVD-x86_64-GMC-DVD3.iso
 
     # Presentations
       - name: SUSE-Linux-Enterprise_12_Advanced-Systems-Management.pdf
@@ -130,6 +131,7 @@ sites:
       - regex: Beta10.*iso
       - regex: RC1.*iso
       - regex: RC2.*iso
+      - regex: RC3.*iso
 
   - name: Betatest SLE 12 HA & Geo
     alias: ha
@@ -140,7 +142,7 @@ sites:
       - name: MD5SUMS
       - name: SHA1SUMS
       - name: SHA256SUMS
-      - regex: RC3.*iso
+      - regex: GMC.*iso
     unavailable-downloads:
       - regex: Beta1-.*iso
       - regex: Beta2.*iso
@@ -154,3 +156,4 @@ sites:
       - regex: Beta10.*iso
       - regex: RC1.*iso
       - regex: RC2.*iso
+      - regex: RC3.*iso
