@@ -288,29 +288,31 @@ begin
         end
 
         # Check if what should not be there is available
-        puts "  * Testing if specific files are not available:"
         downloads = site['unavailable-downloads'] ||= []
-        downloads.each do |d|
-          if d['regex']
-            log_result(
-              !urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?,
-              "File matching '#{d['regex']}' should not be available",
-              site['name']
-            )
-          elsif d['name'] && d['url']
-            puts "Found name and url".blue
-            test_download url: d['url'], name: d['name'], type: 'unavailable', sitename: site['name']
-          elsif d['name']
-            urls.each do |u|
-              if u[:name] == d['name']
-                test_download url: u[:url], name: d['name'], type: 'unavailable', sitename: site['name']
+        if !downloads.empty?
+          puts "  * Testing if specific files are not available:"
+          downloads.each do |d|
+            if d['regex']
+              log_result(
+                !urls.map{ |x| x[:name]}.grep(/#{d['regex']}/).any?,
+                "File matching '#{d['regex']}' should not be available",
+                site['name']
+              )
+            elsif d['name'] && d['url']
+              puts "Found name and url".blue
+              test_download url: d['url'], name: d['name'], type: 'unavailable', sitename: site['name']
+            elsif d['name']
+              urls.each do |u|
+                if u[:name] == d['name']
+                  test_download url: u[:url], name: d['name'], type: 'unavailable', sitename: site['name']
+                end
               end
+            else
+              puts "Aborted: Couldn't find data in unavailable-downloads".red
+              exit
             end
-          else
-            puts "Aborted: Couldn't find data in unavailable-downloads".red
-            exit
-          end
-        end # Check if what should not be there is available
+          end # Check if what should not be there is available
+        end
       end # Do tests
     end # Check specific site
   end # Loop sites
