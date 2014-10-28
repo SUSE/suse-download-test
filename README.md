@@ -1,14 +1,13 @@
 suse-download-test
 ==================
 
-Testscript to check availability of beta versions of SUSE Linux
-Enterprise products.  The script is written in ruby and uses the the
-Mechanize module to access the Novell/SUSE download servers used in SUSE
-Beta tests.
+Testscript to check availability of beta versions or general downloads 
+of SUSE Linux Enterprise products.  The script is written in ruby and 
+uses the the Mechanize module to access the Novell/SUSE download servers.
 
 Usage:
 
-Edit the configuration file suse-betas.yaml to fit your needs. You need
+Edit the configuration file (e.g. suse-betas.yaml) to fit your needs. You need
 credentials for each beta site you want to access. These credentials may
 go directly into the config file like
 
