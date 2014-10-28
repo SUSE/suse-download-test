@@ -2,7 +2,7 @@ sites:
   - name: Betatest SLES 12
     alias: sles
     user: EXTERN 
-    novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=Uhn2fg6VMyk~"
+    url: "http://download.novell.com/protected/Summary.jsp?buildid=Uhn2fg6VMyk~"
     available-downloads:
       - autocheck: true
       - name: PowerLE-FAQ.pdf 
@@ -90,7 +90,7 @@ sites:
   - name: Betatest SLED 12
     alias: sled
     user: EXTERN 
-    novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=OkICkpcQeIg~"
+    url: "http://download.novell.com/protected/Summary.jsp?buildid=OkICkpcQeIg~"
     available-downloads:
       - autocheck: true
       - name: MD5SUMS
@@ -138,7 +138,7 @@ sites:
   - name: Betatest SLE 12 HA & Geo
     alias: ha
     user: EXTERN 
-    novell-url: "http://download.novell.com/protected/Summary.jsp?buildid=HAPbW6wVFPQ~"
+    url: "http://download.novell.com/protected/Summary.jsp?buildid=HAPbW6wVFPQ~"
     available-downloads:
       - autocheck: true
       - name: MD5SUMS

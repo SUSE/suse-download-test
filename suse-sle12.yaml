@@ -1,0 +1,86 @@
+sites:
+  - name: SLES 12 GA AMD/Intel
+    alias: sles-64
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=FFg0PzSTGrw~'
+    available-downloads:
+      - autocheck: true
+      - name: SLE-12-Server-DVD-x86_64-GM-DVD1.iso
+      - name: SLE-12-Server-DVD-x86_64-GM-DVD2.iso
+
+  - name: SLES 12 GA IBM Power
+    alias: sles-power
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=WZv_5xEoUBI~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-Server-DVD-ppc64le-GM-DVD1.iso
+      - name: SLE-12-Server-DVD-ppc64le-GM-DVD2.iso
+
+  - name: SLES 12 GA IBM System z
+    alias: sles-z
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=727vh-9Go98~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-Server-DVD-s390x-GM-DVD1.iso
+      - name: SLE-12-Server-DVD-s390x-GM-DVD2.iso
+
+  - name: SLES 12 GA HA AMD/Intel
+    alias: ha-64
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=0uNtcCFk6MU~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-HA-DVD-x86_64-GM-CD1.iso
+      - name: SLE-12-HA-DVD-x86_64-GM-CD2.iso
+
+  - name: SLES 12 GA HA IBM System z
+    alias: ha-z
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=JlXPIBXEtRI~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-HA-DVD-s390x-GM-CD1.iso
+      - name: SLE-12-HA-DVD-s390x-GM-CD2.iso
+
+  - name: Geo Clustering SLE HAE 12 
+    alias: geo
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=ttCxdWIpd_I~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-HA-GEO-DVD-s390x-x86_64-GM-CD.iso
+
+
+  - name: SLE Workstation Extension 12 
+    alias: we
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=OizpdYwpIXk~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-WE-DVD-x86_64-GM-DVD1.iso
+      - name: SLE-12-WE-DVD-x86_64-GM-DVD2.iso
+
+  - name: SLE SDK 12
+    alias: sdk
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=eHNDsyWlokA~'
+    available-downloads:
+      - autocheck: false
+      - name: SLE-12-SDK-DVD-ppc64le-GM-DVD1.iso
+      - name: SLE-12-SDK-DVD-ppc64le-GM-DVD2.iso
+      - name: SLE-12-SDK-DVD-s390x-GM-DVD1.iso
+      - name: SLE-12-SDK-DVD-s390x-GM-DVD2.iso
+      - name: SLE-12-SDK-DVD-x86_64-GM-DVD1.iso
+      - name: SLE-12-SDK-DVD-x86_64-GM-DVD2.iso
+
+  - name: SLED 12 GA
+    alias: sled
+    user: EXTERN 
+    url: 'https://download.suse.com/protected/Summary.jsp?buildid=an017k-iGf8~'
+    available-downloads:
+      - autocheck: true
+      - name: SLE-12-Desktop-DVD-x86_64-GM-DVD1.iso
+      - name: SLE-12-Desktop-DVD-x86_64-GM-DVD2.iso
+

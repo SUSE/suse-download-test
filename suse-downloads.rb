@@ -44,7 +44,7 @@ def login_novell(user,pass)
   puts "Logged into Novell website as user #{user}".blue if $options[:debug]
 end
 
-def get_novell_downloads(param = {})
+def get_downloads(param = {})
   @agent = Mechanize.new
   
   page = ""
@@ -56,6 +56,12 @@ def get_novell_downloads(param = {})
   else
     login_novell param[:user], param[:pass]
     page = @agent.get param[:url]
+  end
+
+  if page.body.match /export laws and regulations/
+    puts "Need to accept export regulations...".blue
+    form = page.form 'export'
+    page = @agent.submit( form, form.buttons.first )
   end
 
   urls = []
@@ -214,7 +220,8 @@ begin
 
       urls = []
       # Check what's available
-      if !site['novell-url'].nil?
+      if !site['url'].nil? 
+        puts "URL: #{site['url']}".blue if $options[:debug]
 
         # Use credentials from config, or general credential from separate
         # file, if you don't want to put them into version control
@@ -239,9 +246,9 @@ begin
           pass = site['pass']
         end
           
-        urls = get_novell_downloads url: site['novell-url'], user: user, pass: pass
+        urls = get_downloads url: site['url'], user: user, pass: pass
         if $options[:list]
-          puts "  * Available Novell downloads:"
+          puts "  * Available downloads:"
           urls.each do |url|
             puts "   - #{url[:name]}"
           end
