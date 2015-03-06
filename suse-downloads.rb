@@ -139,6 +139,8 @@ def test_download(param = {})
   rescue Cheetah::ExecutionFailed => e
     if type == 'available' && e.status.exitstatus == 63 
       log_result true, "File is available: '#{param[:name]}' (download started)", param[:sitename]
+    elsif type == 'available' && e.status.exitstatus == 22
+      log_result false, "File is missing: '#{param[:name]}'", param[:sitename]
     elsif type == 'unavailable' && e.status.exitstatus == 22
       log_result true, "File is not available: '#{param[:name]}'", param[:sitename]
     elsif type == 'unavailable' && e.status.exitstatus == 63
