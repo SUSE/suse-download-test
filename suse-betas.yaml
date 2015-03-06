@@ -53,7 +53,7 @@ sites:
 
     unavailable-downloads:
     - regex: Beta1.*iso
-    - regex: Beta2.*iso
+  #    - regex: Beta2.*iso
     - regex: Beta3.*iso
     - regex: Beta4.*iso
     - regex: Beta5.*iso
@@ -102,8 +102,8 @@ sites:
       - regex: SDK.*ppc
       - regex: SDK.*s390
       - regex: SDK.*ia64
-  #      - regex: Beta1.*iso
-      - regex: Beta2.*iso
+      - regex: Beta1.*iso
+  #    - regex: Beta2.*iso
       - regex: Beta3.*iso
       - regex: Beta4.*iso
       - regex: Beta5.*iso
