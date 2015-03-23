@@ -5,56 +5,56 @@ sites:
     url: "http://download.novell.com/protected/Summary.jsp?buildid=298ud77D6Go~"
     available-downloads:
       - autocheck: true
-      - regex: Beta2.*iso
+      - regex: Beta3.*iso
       - name: MD5SUMS
       - name: SHA1SUMS
       - name: SHA256SUMS
 
     # SDK
-      - name: SLE-11-SP4-SDK-DVD-ppc64-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-ppc64-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-ppc64-Beta2-DVD3.iso
-      - name: SLE-11-SP4-SDK-DVD-s390x-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-s390x-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-s390x-Beta2-DVD3.iso
-      - name: SLE-11-SP4-SDK-DVD-i586-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-i586-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-i586-Beta2-DVD3.iso
-      - name: SLE-11-SP4-SDK-DVD-ia64-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-ia64-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-ia64-Beta2-DVD3.iso
-      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta2-DVD3.iso
-      - regex: SLE-11-SP4-SDK-DVD.*Beta2.*DVD1.*iso
-      - regex: SLE-11-SP4-SDK-DVD.*Beta2.*DVD2.*iso
-      - regex: SLE-11-SP4-SDK-DVD.*Beta2.*DVD3.*iso
+      - name: SLE-11-SP4-SDK-DVD-ppc64-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-ppc64-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-ppc64-Beta3-DVD3.iso
+      - name: SLE-11-SP4-SDK-DVD-s390x-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-s390x-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-s390x-Beta3-DVD3.iso
+      - name: SLE-11-SP4-SDK-DVD-i586-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-i586-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-i586-Beta3-DVD3.iso
+      - name: SLE-11-SP4-SDK-DVD-ia64-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-ia64-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-ia64-Beta3-DVD3.iso
+      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta3-DVD3.iso
+      - regex: SLE-11-SP4-SDK-DVD.*Beta3.*DVD1.*iso
+      - regex: SLE-11-SP4-SDK-DVD.*Beta3.*DVD2.*iso
+      - regex: SLE-11-SP4-SDK-DVD.*Beta3.*DVD3.*iso
 
     # SLES
-      - name: SLES-11-SP4-DVD-ppc64-Beta2-DVD1.iso
-      - name: SLES-11-SP4-DVD-ppc64-Beta2-DVD2.iso
-      - name: SLES-11-SP4-DVD-ppc64-Beta2-DVD3.iso
-      - name: SLES-11-SP4-DVD-s390x-Beta2-DVD1.iso
-      - name: SLES-11-SP4-DVD-s390x-Beta2-DVD2.iso
-      - name: SLES-11-SP4-DVD-s390x-Beta2-DVD3.iso
-      - name: SLES-11-SP4-DVD-i586-Beta2-DVD1.iso
-      - name: SLES-11-SP4-DVD-i586-Beta2-DVD2.iso
-      - name: SLES-11-SP4-DVD-i586-Beta2-DVD3.iso
-      - name: SLES-11-SP4-DVD-ia64-Beta2-DVD1.iso
-      - name: SLES-11-SP4-DVD-ia64-Beta2-DVD2.iso
-      - name: SLES-11-SP4-DVD-ia64-Beta2-DVD3.iso
-      - name: SLES-11-SP4-DVD-x86_64-Beta2-DVD1.iso
-      - name: SLES-11-SP4-DVD-x86_64-Beta2-DVD2.iso
-      - name: SLES-11-SP4-DVD-x86_64-Beta2-DVD3.iso
-      - regex: SLES-11-SP4-DVD.*Beta2.*DVD1.*iso
-      - regex: SLES-11-SP4-DVD.*Beta2.*DVD2.*iso
-      - regex: SLES-11-SP4-DVD.*Beta2.*DVD3.*iso
+      - name: SLES-11-SP4-DVD-ppc64-Beta3-DVD1.iso
+      - name: SLES-11-SP4-DVD-ppc64-Beta3-DVD2.iso
+      - name: SLES-11-SP4-DVD-ppc64-Beta3-DVD3.iso
+      - name: SLES-11-SP4-DVD-s390x-Beta3-DVD1.iso
+      - name: SLES-11-SP4-DVD-s390x-Beta3-DVD2.iso
+      - name: SLES-11-SP4-DVD-s390x-Beta3-DVD3.iso
+      - name: SLES-11-SP4-DVD-i586-Beta3-DVD1.iso
+      - name: SLES-11-SP4-DVD-i586-Beta3-DVD2.iso
+      - name: SLES-11-SP4-DVD-i586-Beta3-DVD3.iso
+      - name: SLES-11-SP4-DVD-ia64-Beta3-DVD1.iso
+      - name: SLES-11-SP4-DVD-ia64-Beta3-DVD2.iso
+      - name: SLES-11-SP4-DVD-ia64-Beta3-DVD3.iso
+      - name: SLES-11-SP4-DVD-x86_64-Beta3-DVD1.iso
+      - name: SLES-11-SP4-DVD-x86_64-Beta3-DVD2.iso
+      - name: SLES-11-SP4-DVD-x86_64-Beta3-DVD3.iso
+      - regex: SLES-11-SP4-DVD.*Beta3.*DVD1.*iso
+      - regex: SLES-11-SP4-DVD.*Beta3.*DVD2.*iso
+      - regex: SLES-11-SP4-DVD.*Beta3.*DVD3.*iso
 
 
     unavailable-downloads:
     - regex: Beta1.*iso
-  #    - regex: Beta2.*iso
-    - regex: Beta3.*iso
+    - regex: Beta2.*iso
+  #    - regex: Beta3.*iso
     - regex: Beta4.*iso
     - regex: Beta5.*iso
     - regex: Beta6.*iso
@@ -79,32 +79,32 @@ sites:
       - name: MD5SUMS
       - name: SHA1SUMS
       - name: SHA256SUMS
-      - regex: Beta2.*iso
+      - regex: Beta3.*iso
  
-      - name: SLED-11-SP4-DVD-x86_64-Beta2-DVD1.iso
-      - name: SLED-11-SP4-DVD-x86_64-Beta2-DVD2.iso
-      - name: SLED-11-SP4-DVD-x86_64-Beta2-DVD3.iso
-      - name: SLED-11-SP4-DVD-i586-Beta2-DVD1.iso
-      - name: SLED-11-SP4-DVD-i586-Beta2-DVD2.iso
-      - name: SLED-11-SP4-DVD-i586-Beta2-DVD3.iso
-      - name: SLED-11-SP4-MINI-ISO-x86_64-Beta2-DVD.iso
-      - name: SLED-11-SP4-MINI-ISO-i586-Beta2-DVD.iso
+      - name: SLED-11-SP4-DVD-x86_64-Beta3-DVD1.iso
+      - name: SLED-11-SP4-DVD-x86_64-Beta3-DVD2.iso
+      - name: SLED-11-SP4-DVD-x86_64-Beta3-DVD3.iso
+      - name: SLED-11-SP4-DVD-i586-Beta3-DVD1.iso
+      - name: SLED-11-SP4-DVD-i586-Beta3-DVD2.iso
+      - name: SLED-11-SP4-DVD-i586-Beta3-DVD3.iso
+      - name: SLED-11-SP4-MINI-ISO-x86_64-Beta3-DVD.iso
+      - name: SLED-11-SP4-MINI-ISO-i586-Beta3-DVD.iso
 
     # SDK
-      - name: SLE-11-SP4-SDK-DVD-i586-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-i586-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-i586-Beta2-DVD3.iso
-      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta2-DVD1.iso
-      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta2-DVD2.iso
-      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta2-DVD3.iso
+      - name: SLE-11-SP4-SDK-DVD-i586-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-i586-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-i586-Beta3-DVD3.iso
+      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta3-DVD1.iso
+      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta3-DVD2.iso
+      - name: SLE-11-SP4-SDK-DVD-x86_64-Beta3-DVD3.iso
 
     unavailable-downloads:
       - regex: SDK.*ppc
       - regex: SDK.*s390
       - regex: SDK.*ia64
       - regex: Beta1.*iso
-  #    - regex: Beta2.*iso
-      - regex: Beta3.*iso
+      - regex: Beta2.*iso
+  #   - regex: Beta3.*iso
       - regex: Beta4.*iso
       - regex: Beta5.*iso
       - regex: Beta6.*iso
@@ -126,22 +126,22 @@ sites:
       - name: MD5SUMS
       - name: SHA1SUMS
       - name: SHA256SUMS
-      - name: SLE-HA-11-SP4-i586-Beta2-CD1.iso
-      - name: SLE-HA-11-SP4-i586-Beta2-CD2.iso
-      - name: SLE-HA-11-SP4-ia64-Beta2-CD1.iso
-      - name: SLE-HA-11-SP4-ia64-Beta2-CD2.iso
-      - name: SLE-HA-11-SP4-ppc64-Beta2-CD1.iso
-      - name: SLE-HA-11-SP4-ppc64-Beta2-CD2.iso
-      - name: SLE-HA-11-SP4-x86_64-Beta2-CD1.iso
-      - name: SLE-HA-11-SP4-x86_64-Beta2-CD2.iso
-      - name: SLE-HA-11-SP4-s390x-Beta2-CD1.iso
-      - name: SLE-HA-11-SP4-s390x-Beta2-CD2.iso
-      - name: SLE-HA-GEO-11-SP4-s390x-x86_64-Beta2-CD.iso
-      - regex: Beta2.*iso
+      - name: SLE-HA-11-SP4-i586-Beta3-CD1.iso
+      - name: SLE-HA-11-SP4-i586-Beta3-CD2.iso
+      - name: SLE-HA-11-SP4-ia64-Beta3-CD1.iso
+      - name: SLE-HA-11-SP4-ia64-Beta3-CD2.iso
+      - name: SLE-HA-11-SP4-ppc64-Beta3-CD1.iso
+      - name: SLE-HA-11-SP4-ppc64-Beta3-CD2.iso
+      - name: SLE-HA-11-SP4-x86_64-Beta3-CD1.iso
+      - name: SLE-HA-11-SP4-x86_64-Beta3-CD2.iso
+      - name: SLE-HA-11-SP4-s390x-Beta3-CD1.iso
+      - name: SLE-HA-11-SP4-s390x-Beta3-CD2.iso
+      - name: SLE-HA-GEO-11-SP4-s390x-x86_64-Beta3-CD.iso
+      - regex: Beta3.*iso
     unavailable-downloads:
       - regex: Beta1.*iso
-  #      - regex: Beta2.*iso
-      - regex: Beta3.*iso
+      - regex: Beta2.*iso
+  #    - regex: Beta3.*iso
       - regex: Beta4.*iso
       - regex: Beta5.*iso
       - regex: Beta6.*iso
