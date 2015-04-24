@@ -87,8 +87,8 @@ sites:
       - name: SLED-11-SP4-DVD-i586-Beta4-DVD1.iso
       - name: SLED-11-SP4-DVD-i586-Beta4-DVD2.iso
       - name: SLED-11-SP4-DVD-i586-Beta4-DVD3.iso
-      - name: SLED-11-SP4-MINI-ISO-x86_64-Beta4-DVD.iso
-      - name: SLED-11-SP4-MINI-ISO-i586-Beta4-DVD.iso
+  #      - name: SLED-11-SP4-MINI-ISO-x86_64-Beta4-DVD.iso
+  #      - name: SLED-11-SP4-MINI-ISO-i586-Beta4-DVD.iso
 
     # SDK
       - name: SLE-11-SP4-SDK-DVD-i586-Beta4-DVD1.iso
