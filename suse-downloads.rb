@@ -120,7 +120,8 @@ def test_download(param = {})
     Cheetah.run(
       "curl", 
       param[:url], 
-      "-f", 
+      "-f",
+      "-v", 
       "-L", 
       "--max-filesize", "1024" )
 
@@ -260,7 +261,7 @@ begin
       if $options[:test]
         # Check if available downloads can be downloaded
         if !$options[:nolisttest] && site['available-downloads'].include?({'autocheck' => true})
-          puts "  * Testing available downloads:" 
+          puts "  * Download test of available downloads:" 
           urls.each do |u|
             test_download url: u[:url], name: u[:name], type: 'available', sitename: site['name']
           end
@@ -268,7 +269,7 @@ begin
 
 
         # Check if what should be there is available
-        puts "  * Testing if specific files are available:"
+        puts "  * Testing if specific files are present in the download page:"
         downloads = site['available-downloads'] ||= []
         downloads.each do |d|
           if d['regex']
@@ -299,7 +300,7 @@ begin
         # Check if what should not be there is available
         downloads = site['unavailable-downloads'] ||= []
         if !downloads.empty?
-          puts "  * Testing if specific files are not available:"
+          puts "  * Testing what should be unavailable:"
           downloads.each do |d|
             if d['regex']
               log_result(
