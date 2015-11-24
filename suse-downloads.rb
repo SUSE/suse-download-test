@@ -30,7 +30,7 @@ end
 
 def login_novell(user,pass)
   @agent = Mechanize.new
-  page = @agent.get 'https://login.attachmategroup.com/nidp/app/login?id=17&sid=2&option=credential&sid=2'
+  page = @agent.get 'https://login.microfocus.com/nidp/app/login?id=25&sid=2&option=credential'
 
   form = page.form('IDPLogin')
   form.Ecom_User_ID = user
@@ -72,7 +72,7 @@ def get_downloads(param = {})
     if row.at("td[3]")
       url[:name] = row.at("td[1]").text.strip
       url[:url] = row.at("td[3]/a/@href").text
-      url[:url] = 'http://download.novell.com' + url[:url] if $options[:testmode]
+      url[:url] = 'http://download.suse.com' + url[:url] if $options[:testmode]
       urls << url
     end
   end
