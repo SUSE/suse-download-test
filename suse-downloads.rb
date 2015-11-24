@@ -160,7 +160,7 @@ begin
 
   $options = {}
 
-  $configfile  = 'suse-betas.yaml'
+  $configfile  = 'suse-betas-SLE12SP1-GMC2.yaml'
   $credentialfile  = 'credentials.yaml'
 
   optparse = OptionParser.new do |opts|
